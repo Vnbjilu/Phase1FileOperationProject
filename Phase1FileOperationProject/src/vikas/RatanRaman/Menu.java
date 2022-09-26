@@ -68,5 +68,51 @@ public class Menu {
 		}
 		
 	}
+	public  void fileTask() 
+	{
+		
+		int ch=1;
+		Scanner sc=new Scanner(System.in);
+		try
+		{
+			while(ch!=4)
+			{
+				fileMenu();
+				System.out.print("\n\n\t Enter the choice");
+				ch=sc.nextInt();
+				switch(ch)
+				{
+				case 1:
+					fileCreation();
+					break;
+				case 2:
+					fileDeletion();
+					break;
+				case 3:
+					fileSearching();
+					break;
+				case 4:
+				break;
+				default:
+					System.out.print("\n\n\t Sorry !! You have Selected Wrong  Choice ");
+					System.out.print("\n\n Type Ok and Press Enter key to continue........");
+					String s=sc.next();
+				}
+			}
+		
+			
+		}catch(InputMismatchException e)
+		{
+			System.out.print("\n\n\t Sorry Only Integer Numbers are Allowed");
+			System.out.print("\n\n\tType Ok and press Enter key to Continue...........");
+			String s=sc.next();
+		}
+		catch(Exception e)
+		{
+			System.out.print("Error Created ="+e.toString());
+		
+		}
+		
 	}
+	
 }
