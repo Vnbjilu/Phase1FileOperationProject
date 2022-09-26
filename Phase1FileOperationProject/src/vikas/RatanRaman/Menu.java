@@ -44,17 +44,23 @@ public class Menu {
 				ch=sc.nextInt();
 				switch(ch)
 				{
-				case 1:
-					//fileDisplayInAscendingOrder();
+					case 1:
+						//fileDisplayInAscendingOrder();
+						break;
+					case 2:
+						fileTask();
 					break;
-				case 2:
-					fileTask();
-				break;
-				case 3:
-					DisplayMessage();
-				break;
+					case 3:
+						DisplayMessage();
+					break;
+				
+					default:
+						System.out.print("\n\n\t Sorry !! You have Selected Wrong  Choice ");
+						System.out.print("\n\n Type Ok and Press Enter key to continue........");
+						String s=sc.next();
 				}
 			}
+			
 		}catch(InputMismatchException e)
 		{
 			System.out.print("\n\n\t Sorry Only Integer Numbers are Allowed");
