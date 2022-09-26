@@ -51,7 +51,7 @@ public class Menu {
 						fileTask();
 					break;
 					case 3:
-						DisplayMessage();
+						displayMessage();
 					break;
 				
 					default:
@@ -120,5 +120,23 @@ public class Menu {
 		}
 		
 	}
-	
+	public void fileCreation()
+	{
+		System.out.print("Welcome to File Creation ");
+	}
+	public void fileDeletion()
+	{
+		System.out.print("Welcome to File Searching and deletion ");
+		
+	}
+	public void fileSearching()
+	{
+		System.out.print("Welcome to File Searching");
+	}
+	public void displayMessage()
+	{
+		System.out.println("\n\n\t Thanks for Using This Software ");
+		System.out.println("\n I am hearty Thanks to Simplilearn to make me able to complete this task");
+		System.out.println("\nAt Last Thanks to Everyone ");
+	}
 }
