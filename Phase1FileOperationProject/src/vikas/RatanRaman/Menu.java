@@ -1,5 +1,8 @@
 package vikas.RatanRaman;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Menu {
 	public void details(String appName,String devName)
 	{
@@ -26,5 +29,44 @@ public class Menu {
 	}
 	
 
-	
+	//Function with Main Menu
+	public void mainTask()
+	{
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.print("\n\n\tEnter the choice");
+		try
+		{
+			int ch=1;
+			while(ch!=3)
+			{
+				mainMenu();
+				ch=sc.nextInt();
+				switch(ch)
+				{
+				case 1:
+					//fileDisplayInAscendingOrder();
+					break;
+				case 2:
+					fileTask();
+				break;
+				case 3:
+					DisplayMessage();
+				break;
+				}
+			}
+		}catch(InputMismatchException e)
+		{
+			System.out.print("\n\n\t Sorry Only Integer Numbers are Allowed");
+			System.out.print("\n\n\tType Ok and press Enter key to Continue...........");
+			String s=sc.next();
+		}
+		catch(Exception e)
+		{
+			System.out.print("Error Created ="+e.toString());
+		
+		}
+		
+	}
+	}
 }
