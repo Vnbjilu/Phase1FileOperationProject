@@ -15,6 +15,15 @@ public class Menu {
 		System.out.print("\n\n\t 3-> for Exit the program ");
 		
 	}
+	public void fileMenu()
+	{
+		
+		System.out.print("\n\n\t======================== Welcome to File Operation Menu==============================");
+		System.out.print("\n\n\t 1-> for Add File with Content ");
+		System.out.print("\n\n\t 2-> For Delete the File ");
+		System.out.print("\n\n\t 3-> For Search the File");
+		System.out.print("\n\n\t 4-> for Go Back to Main Menu ");
+	}
 	
 
 	
