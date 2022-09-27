@@ -65,9 +65,11 @@ public class Menu {
 					{
 						case 1:
 							fileDisplayInAscendingOrder(true);
+							pause();
 							break;
 						case 2:
 							fileDisplayInAscendingOrder(false);
+							pause();
 						case 3:
 							fileTask();
 						break;
@@ -77,16 +79,16 @@ public class Menu {
 					
 						default:
 							System.out.print("\n\n\t Sorry !! You have Selected Wrong  Choice ");
-							System.out.print("\n\n Type Ok and Press Enter key to continue........");
-							String s=sc.next();
+							pause();
+							
 					}
+					
 				
 				
 			}catch(InputMismatchException e)
 			{
 				System.out.print("\n\n\t Sorry Only Integer Numbers are Allowed");
-				System.out.print("\n\n\tType Ok and press Enter key to Continue...........");
-				String s=sc.next();
+				pause();
 			}
 			catch(Exception e)
 			{
@@ -139,20 +141,24 @@ public class Menu {
 				{
 				case 1:
 					fileCreation();
+					pause();
 					break;
 				case 2:
 					fileDeletion();
+					pause();
 					break;
 				case 3:
 					fileSearching();
+					pause();
 					break;
 				case 4:
 				break;
 				default:
 					System.out.print("\n\n\t Sorry !! You have Selected Wrong  Choice ");
-					System.out.print("\n\n Type Ok and Press Enter key to continue........");
-					String s=sc.next();
+					pause();
+					
 				}
+				
 			}
 		
 			
@@ -237,9 +243,9 @@ public class Menu {
 			break;
 		default:
 			System.out.print("\n\n\t Sorry!! Wrong choice Selected \n\tTry Again");
-			System.out.println("\n\n Press Ok and Type Enter key");
-			String s=sc.next();
+			
 		}
+		
 	}
 	private void filesearch(boolean b) {
 		//from Existing Directory __main__ 
@@ -267,12 +273,13 @@ public class Menu {
 			System.out.println("\n\n\t"+(++i)+" -> "+it.next());
 		}
 		System.out.print("\n\n\t===================================End of list================================");
+		
 		System.gc();
 	}
 	public void pause()
 	{
 		sc=new Scanner(System.in);
-		System.out.print("Type ok and Press Enter key to continue..................");
+		System.out.print("\n\n\tType ok and Press Enter key to continue..................");
 		String tmp=sc.next();
 		System.gc();
 	}
@@ -310,7 +317,7 @@ public class Menu {
 		System.out.println("\n\n\t Special Thanks to My Trainer Mr. Mritunjay ");
 		System.out.println("\n\tI am hearty Thanks to Simplilearn to make me able to complete this task");
 		System.out.println("\n\tAt Last Thanks to Everyone ");
-		System.out.println("\nDeveloper Name is Vikas Srivastava From Gorakhpur UP India");
+		System.out.println("\n\tDeveloper Name is Vikas Srivastava From Gorakhpur UP India");
 		System.out.println("=============================================================================");
 	}
 	public  List<String>  displayAllFiles(String path,int indentationCount,List<String> listFileNames)
