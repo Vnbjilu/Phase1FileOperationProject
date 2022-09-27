@@ -7,13 +7,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
+	private Scanner sc;
+	Menu()
+	{
+		sc=new Scanner(System.in);
+	}
 	public void details(String appName,String devName)
 	{
-		Scanner sc=new Scanner(System.in);
+		
 		System.out.println("\n\n\t======================App Details and Developer Name=========================");
 		System.out.println("\n\t\t AppName       : "+appName);
 		System.out.println("\n\t\t DeveloperName : "+devName);
@@ -45,7 +51,7 @@ public class Menu {
 	public void mainTask()
 	{
 		
-		Scanner sc=new Scanner(System.in);
+		sc=new Scanner(System.in);
 		int ch=1;
 		while(ch!=4)
 		{
@@ -88,11 +94,12 @@ public class Menu {
 			
 			}
 		}
+		System.gc();
 	}
 	
 	public  void fileDisplayInAscendingOrder(boolean f) {
 		
-		Scanner sc=new Scanner(System.in);
+	sc=new Scanner(System.in);
 		String path="__main__";
 		CreateDirectoryIfNotExist();
 		if(!f)
@@ -114,13 +121,13 @@ public class Menu {
 		
 		});
 		System.out.println("\n\n\t=================================End of File Names=============");
-		
+		System.gc();
 	}
 	public  void fileTask() 
 	{
 		
 		int ch=1;
-		Scanner sc=new Scanner(System.in);
+		 sc=new Scanner(System.in);
 		try
 		{
 			while(ch!=4)
@@ -160,7 +167,7 @@ public class Menu {
 			System.out.print("Error Created ="+e.toString());
 		
 		}
-		
+		System.gc();
 	}
 	public void CreateDirectoryIfNotExist()
 	{
@@ -172,7 +179,7 @@ public class Menu {
 	{
 		CreateDirectoryIfNotExist();
 		
-		Scanner sc=new Scanner(System.in);
+		 sc=new Scanner(System.in);
 		try
 		{
 			
@@ -206,7 +213,7 @@ public class Menu {
 				e.printStackTrace();
 		}
 			
-			
+		System.gc();
 	}
 	public void fileDeletion()
 	{
@@ -215,7 +222,86 @@ public class Menu {
 	}
 	public void fileSearching()
 	{
-		System.out.print("Welcome to File Searching");
+		System.out.print("\n\n\n========================Welcome To file Searching Option =============================");
+		System.out.println("\n\n\t 1-> from Current Directory");
+		System.out.println("\n\n\t 2-> from New Location");
+		System.out.print("\n\n\t\t Enter your choice");
+		int ch=sc.nextInt();
+		switch(ch)
+		{
+		case 1:
+			filesearch(true);
+			break;
+		case 2:
+			filesearch(false);
+			break;
+		default:
+			System.out.print("\n\n\t Sorry!! Wrong choice Selected \n\tTry Again");
+			System.out.println("\n\n Press Ok and Type Enter key");
+			String s=sc.next();
+		}
+	}
+	private void filesearch(boolean b) {
+		//from Existing Directory __main__ 
+		sc=new Scanner(System.in);
+		String path="__main__";
+		
+		// for new Location 
+		if(!b)
+		{
+		System.out.print("Enter the Location: ");
+		path=sc.nextLine();
+		}
+		String filename="";
+		System.out.print("Enter the FileName : ");
+		filename=sc.nextLine();
+		int flag=0;
+		List<String>listFilenames=new ArrayList<>();
+		getFile(path,filename,listFilenames);
+		
+		Iterator it=listFilenames.listIterator();
+		int i=0;
+		System.out.println("\n\n======List of File Found at : "+path+" With Filename : "+filename+" is given below=================================");
+		while(it.hasNext())
+		{
+			System.out.println("\n\n\t"+(++i)+" -> "+it.next());
+		}
+		System.out.print("\n\n\t===================================End of list================================");
+		System.gc();
+	}
+	public void pause()
+	{
+		sc=new Scanner(System.in);
+		System.out.print("Type ok and Press Enter key to continue..................");
+		String tmp=sc.next();
+		System.gc();
+	}
+	public static void getFile(String path,String Filename,List<String> listFilenames)
+	{
+		File file=new File(path);
+		File files[]=file.listFiles();
+		
+		
+		if(files!=null && files.length>0 )
+		{
+			List<File> listFile=Arrays.asList(files);
+			//Accessing of Files using Lambda Expression  
+			listFile.forEach(n->{
+				
+				if(n.getName().toLowerCase().startsWith(Filename.toLowerCase()))
+				{
+					listFilenames.add(n.getAbsolutePath());
+					
+					getFile(n.getAbsolutePath(), Filename, listFilenames);
+				}
+					else
+				{
+					if(n.isDirectory())
+						getFile(n.getAbsolutePath(), Filename, listFilenames);
+				}
+				
+			});
+		}
 	}
 	public void displayMessage()
 	{
@@ -224,6 +310,7 @@ public class Menu {
 		System.out.println("\n\n\t Special Thanks to My Trainer Mr. Mritunjay ");
 		System.out.println("\n\tI am hearty Thanks to Simplilearn to make me able to complete this task");
 		System.out.println("\n\tAt Last Thanks to Everyone ");
+		System.out.println("\nDeveloper Name is Vikas Srivastava From Gorakhpur UP India");
 		System.out.println("=============================================================================");
 	}
 	public  List<String>  displayAllFiles(String path,int indentationCount,List<String> listFileNames)
