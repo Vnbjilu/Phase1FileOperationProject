@@ -175,13 +175,13 @@ public class Menu {
 		}
 		System.gc();
 	}
-	public void CreateDirectoryIfNotExist()
+	private void CreateDirectoryIfNotExist()
 	{
 		File f=new File("__main__");
 		if(!f.exists())
 			f.mkdir();
 	}
-	public void fileCreation()
+	private void fileCreation()
 	{
 		CreateDirectoryIfNotExist();
 		
@@ -221,12 +221,72 @@ public class Menu {
 			
 		System.gc();
 	}
-	public void fileDeletion()
+	private void fileDeletion()
 	{
-		System.out.print("Welcome to File Searching and deletion ");
+		System.out.print("\n\n\t===============Welcome to File Deletion Module=======================");
+		System.out.print("\n\n\t 1-> for Main Directory");
+		System.out.print("\n\n\t 2-> for Other Location");
+		System.out.print("\n\n\t Enter the choice ");
+		sc=new Scanner(System.in);
+		int i;
+		i=sc.nextInt();
+		switch(i)
+		{
+		case 1:
+			getFileDeleted(true);
+		break;
+		case 2:
+			getFileDeleted(false);
+		break;
+		default:
+			System.out.println(" Sorry!! Wrong Option selected\n\t Try Again");
+			
+		}
+		
 		
 	}
-	public void fileSearching()
+	private void getFileDeleted(boolean b) {
+		String path="__main__";
+		sc=new Scanner(System.in);
+		if(!b)
+		{
+			System.out.print("Enter the new Location from there File will be deleted");
+			path=sc.nextLine();
+		}
+		String filename="";
+		System.out.print("Enter the file name that will be deleted");
+		filename=sc.next();
+		File f=new File(path);
+		File files[]=f.listFiles();
+		List<File> listFile=Arrays.asList(files);
+		int flag=0;
+		Iterator<File> fn =listFile.iterator();
+		while(fn.hasNext())
+		{
+			File tmp=fn.next();
+			if(tmp.getName().equalsIgnoreCase(filename))
+			{
+				flag=1;
+				System.out.println("File Found at"+f.getAbsolutePath());
+				System.out.print("Are you sure to Delete Y/N" );
+				String inp=sc.next();
+				if(inp.equalsIgnoreCase("y"))
+					tmp.delete();
+				else
+					flag=2;
+				break;
+			}
+		}
+		if(flag==1)
+			System.out.println("\n\n\tFile Found and deleted Succesfuyly");
+		else if(flag==2)
+			System.out.print("\n\tOperation Aborted Successfully");
+		else
+			System.out.print("\n\tSorry! File not Found");
+		
+		
+	}
+	private void fileSearching()
 	{
 		System.out.print("\n\n\n========================Welcome To file Searching Option =============================");
 		System.out.println("\n\n\t 1-> from Current Directory");
@@ -297,9 +357,11 @@ public class Menu {
 				
 				if(n.getName().toLowerCase().startsWith(Filename.toLowerCase()))
 				{
+					if(n.isFile())
 					listFilenames.add(n.getAbsolutePath());
+					else
+						getFile(n.getAbsolutePath(), Filename, listFilenames);
 					
-					getFile(n.getAbsolutePath(), Filename, listFilenames);
 				}
 					else
 				{
